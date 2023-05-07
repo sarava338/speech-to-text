@@ -47,6 +47,7 @@ const VoiceRecognition = () => {
           id="speech-to-text"
           value={transcript}
           placeholder={placeHolder}
+          readOnly = {true}
         ></textarea>
         <div>
           <button id="speek" onClick={handleSpeek}>
