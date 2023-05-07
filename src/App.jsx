@@ -1,26 +1,12 @@
-import { useEffect, useState } from "react";
+import VoiceRecognition from "./components/VoiceRecognition";
 import "./App.css";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
 
 function App() {
-  const { transcript, browserSupportsSpeechRecognition } =
-    useSpeechRecognition();
-
-    useEffect(() => {
-      SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
-    }, []);
-
-    
-    if (!browserSupportsSpeechRecognition) {
-      return <h2>Browser doesn't support speech recognition.</h2>;
-    } else
-    return (
-      <>
-        <h1>chatBOT</h1>
-        <p>Recognized Text: {transcript}</p>
-      </>
-    );
+  return (
+    <article>
+      <h1>SPEECH TO TEXT</h1>
+      <VoiceRecognition />
+    </article>
+  );
 }
 export default App;
