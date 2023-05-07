@@ -16,13 +16,13 @@ const VoiceRecognition = () => {
   
   You can't type here.
   
-  By pressing SPEEK button, You can type here.
+  After pressing SPEEK button, By speeking You can type here.
   
   By pressing RESET button, clear the box you have spoke.
   
-  By pressing COPY button you can copy the text just spoke.
+  You can change language by pressing TAMIL & ENGLISH buttons.
   
-  You can change language by pressing TAMIL & ENGLISH buttons.`;
+  By pressing COPY button you can copy the text just spoke.`;
 
   const handleSpeek = () => {
     if (listening) {
