@@ -1,43 +1,33 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 function App() {
-  const [recognizedText, setRecognizedText] = useState("");
+  const [isListening, setIsListening] = useState(true);
+  const { transcript, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
 
-  const speachToText = () => {
-    const SpeechRecognition =
-      window.SpeechRecognition || webkitSpeechRecognition;
-    // const SpeechGrammarList =
-    // window.SpeechGrammarList || webkitSpeechGrammarList;
-    const SpeechRecognitionEvent =
-      window.SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
-
-    const recognition = new SpeechRecognition();
-    // const speechRecognitionList = new SpeechGrammarList();
-
-    // recognition.grammars = speechRecognitionList;
-    recognition.continuous = false;
-    recognition.lang = "en-US";
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-
-    recognition.start();
-    recognition.onresult = (e) => {
-      const speachToText = e.results[0][0].transcript;
-      setRecognizedText(speachToText);
-    };
+  const handleListening = () => {
+    if (isListening) {
+      SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
+      setIsListening(true);
+    } else {
+      SpeechRecognition.stopListening();
+      setIsListening(false);
+    }
   };
+  addEventListener("click", handleListening);
 
-  useEffect(() => {
-    // speachToText();
-    addEventListener("click", speachToText);
-  });
-
-  return (
-    <>
-      <h1>chatBOT</h1>
-      <p>Recognized Text: {recognizedText}</p>
-    </>
-  );
+  if (!browserSupportsSpeechRecognition) {
+    return <h2>Browser doesn't support speech recognition.</h2>;
+  } else
+    return (
+      <>
+        <h1>chatBOT</h1>
+        <p>Recognized Text: {transcript}</p>
+      </>
+    );
 }
 export default App;
