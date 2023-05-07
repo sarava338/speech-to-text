@@ -27,13 +27,13 @@ const VoiceRecognition = () => {
   const handleSpeek = () => {
     if (listening) {
       SpeechRecognition.stopListening();
-      document.querySelector("#speek").innerHTML = "Speek";
+      document.querySelector("#speek").innerHTML = "SPEEK";
     } else {
       SpeechRecognition.startListening({
         continuous: true,
         language: "en-IN",
       });
-      document.querySelector("#speek").innerHTML = "Stop";
+      document.querySelector("#speek").innerHTML = "STOP";
     }
   };
 
@@ -50,9 +50,9 @@ const VoiceRecognition = () => {
         ></textarea>
         <div>
           <button id="speek" onClick={handleSpeek}>
-            Speek
+            SPEEK
           </button>
-          <button onClick={resetTranscript}>Reset</button>
+          <button onClick={resetTranscript}>RESET</button>
         </div>
         <div>
           <button
@@ -63,7 +63,7 @@ const VoiceRecognition = () => {
               });
             }}
           >
-            Tamil
+            TAMIL
           </button>
           <button
             onClick={() => {
@@ -73,7 +73,7 @@ const VoiceRecognition = () => {
               });
             }}
           >
-            English
+            ENGLISH
           </button>
           <button
             onClick={() => {
@@ -82,7 +82,7 @@ const VoiceRecognition = () => {
               );
             }}
           >
-            Copy
+            COPY
           </button>
         </div>
       </section>
