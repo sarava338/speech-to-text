@@ -5,24 +5,17 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 
 function App() {
-  const [isListening, setIsListening] = useState(true);
   const { transcript, browserSupportsSpeechRecognition } =
     useSpeechRecognition();
 
-  const handleListening = () => {
-    if (isListening) {
+    useEffect(() => {
       SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
-      setIsListening(true);
-    } else {
-      SpeechRecognition.stopListening();
-      setIsListening(false);
-    }
-  };
-  addEventListener("click", handleListening);
+    }, []);
 
-  if (!browserSupportsSpeechRecognition) {
-    return <h2>Browser doesn't support speech recognition.</h2>;
-  } else
+    
+    if (!browserSupportsSpeechRecognition) {
+      return <h2>Browser doesn't support speech recognition.</h2>;
+    } else
     return (
       <>
         <h1>chatBOT</h1>
